@@ -19,9 +19,38 @@ alert( Math.round(6.35 * 10) / 10 );
 
 function readNumber() {
     let num;
-    while (!isNaN(num)) {
-        num = +prompt("Введите число:", "");
-    }
-    alert(num)
+    do {
+      num = +prompt("Введите число:", "");
+      if (num === null || num === '') return null;
+    } while (!isFinite(num));
 
+    return +num
+}
+
+
+// 4. Бесконечный цикл по ошибке
+// Этот цикл – бесконечный. Он никогда не завершится, почему?
+
+let i = 0;
+while (i != 10) {
+  i += 0.2;
+}
+// Потому что i никогда не будет равна 10, из-за потери точности при вычислений десятичных дробей
+
+
+// 5. Случайное число от min до max
+// Встроенный метод Math.random() возвращает случайное число от 0 (включительно) до 1 (но не включая 1)
+// Напишите функцию random(min, max), которая генерирует случайное число с плавающей точкой от min до max (но не включая max).
+
+function random(min, max) {
+  return min + Math.random() * (max - min);
+}
+
+
+// 6. Случайное целое число от min до max
+// Напишите функцию randomInteger(min, max), которая генерирует случайное целое (integer) число от min до max (включительно).
+// Любое число из интервала min..max должно появляться с одинаковой вероятностью.
+
+function randomInteger(min, max) {
+  return Math.floor(min + Math.random() * (max + 1 - min));
 }
